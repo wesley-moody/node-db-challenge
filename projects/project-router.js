@@ -109,4 +109,24 @@ router.get("/:id/project", (req, res) => {
 
 //  POST =======>
 
+router.post("/:id/resource", (req, res) => {
+  const data = req.body;
+  const { id } = req.params;
+  Projects.findById(id)
+    .then(resource => {
+      if (resource) {
+        Projects.addResource(data, id).then(resource => {
+          res.status(201).json(resource);
+        });
+      } else {
+        res
+          .status(404)
+          .json({ message: "Could not find resource with given id." });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Failed to create new resource" });
+    });
+});
 
+module.exports = router;
