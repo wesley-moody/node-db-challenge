@@ -1,13 +1,13 @@
 const express = require("express");
-const helmet = require("helmet");
-const morgan = require("morgan");
 
-const ProjectRouter = require("./projects/router");
+// const SchemeRouter = require("./schemes/scheme-router.js");
 
 const server = express();
 
-server.use(helmet());
-server.use(morgan());
 server.use(express.json());
+// server.use("/api/schemes", SchemeRouter);
+
+// server.get("/", (req, res) => { res.send("<h3> DBMS SPRINT TIME </h3>")
+// }); 
 
 module.exports = server;
